@@ -1,7 +1,118 @@
+<!-- <title>Western Online Timetable Search Page</title> -->
+
 <h1>{{title}}</h1>
+
+<h3>Get All Avaliable Subject Codes and Descriptions <button (click)="getSubjCodesAndDescrs()">Toggle</button></h3>
+    <ol id="subjCodeAndDescrList" class="hidden">
+      <li *ngFor="let course of courses">
+        {{course.catalog_nbr}} - {{course.className}}
+      </li>
+    </ol>
+    <br>
+
+    <h3>Get Course Codes for Given Subject Code <input #subjCodeForCourseCodes id="subjCodeForCourseCodes" value="Subject Code"/> <button id="getCourseCodesWithSubjCode">Search</button></h3>
+    <ol id="courseCodesFromSubjList">
+      
+    </ol>
+    <br>
+
+    <!-- <h3>Get Timetable Entry for Given Subject Code and Course Code
+        <input type="text" id="subjCode1ForTimetable" value="Subject Code"/>
+        <input type="text" id="courseCode1ForTimetable" value="Course Code"/> 
+        <button id="getTimetableEntry">Search</button>
+    </h3>
+    <ul id="timetableEntryList"></ul>
+    <br>
+
+    <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
+        <input type="text" id="subjCode2ForTimetable" value="Subject Code"/>
+        <input type="text" id="courseCode2ForTimetable" value="Course Code"/>
+        <input type="text" id="courseCompForTimetable" value="Course Component"/>
+        <button id="getTimetableEntryWComponent">Search</button>
+    </h3>
+    <ul id="timetableEntryWComponentList"></ul>
+    <br>
+
+    <h3>Create a New Schedule
+        <input type="text" id="newSchedInput" value="Schedule Name"/> <button id="createNewSchedule">Submit</button>
+    </h3>
+    <ul id="scheduleNames"></ul>
+    <br>
+
+    <h3>Save a List of Courses in a Schedule</h3>
+    <h4>Schedule: 
+        <input type="text" id="saveCoursesSchedName" value="Schedule Name"/>
+    </h4>
+    <h5>Course 1: 
+        <input type="text" id="course1SubjCode" value="Subject Code"/>
+        <input type="text" id="course1CourseCode" value="Course Code"/>
+        <input type="checkbox" id="course1Check"></input>
+    </h5>
+    <h5>Course 2: 
+        <input type="text" id="course2SubjCode" value="Subject Code"/>
+        <input type="text" id="course2CourseCode" value="Course Code"/>
+        <input type="checkbox" id="course2Check"></input>
+    </h5>
+    <h5>Course 3: 
+        <input type="text" id="course3SubjCode" value="Subject Code"/>
+        <input type="text" id="course3CourseCode" value="Course Code"/>
+        <input type="checkbox" id="course3Check"></input>
+    </h5>
+    <h5>Course 4: 
+        <input type="text" id="course4SubjCode" value="Subject Code"/>
+        <input type="text" id="course4CourseCode" value="Course Code"/>
+        <input type="checkbox" id="course4Check"></input>
+    </h5>
+    <h5>Course 5: 
+        <input type="text" id="course5SubjCode" value="Subject Code"/>
+        <input type="text" id="course5CourseCode" value="Course Code"/>
+        <input type="checkbox" id="course5Check"></input>
+    </h5>
+    <button id="submitModifySchedule">Submit</button>
+    <br>
+
+    <h3>Get the List of Subject Codes and Course Codes for a Given Schedule
+        <input type="text" id="listCoursesSchedName" value="Schedule Name"/>
+        <button id="listCoursesInSchedule">Search</button>
+    </h3>
+    <ol id="coursesFromScheduleList"></ol>
+    <br>
+
+    <h3>Get a List of Schedules and the Number of Courses in Each 
+        <button id="listSchedulesAndCourses">Search</button>
+    </h3>
+    <ol id="allSchedulesAndCourseNumsList"></ol>
+
+    <br>
+
+    <h3>Delete a Schedule
+        <input type="text" id="deleteSchedName" value="Schedule Name"/>
+        <button id="deleteScheduleButton">Submit</button>
+    </h3>
+    <br>
+
+    <h3>Delete All Schedules
+        <button id="deleteAllButton">Submit</button>
+    </h3>
+    <br> -->
+
+
+
+<br>
+<h2>Add Schedule to Timetable
+  <input #addSchedule (keyup.enter)="onShowSchedule(addSchedule.value)">
+  <p>{{addSchedule.value}}</p>
+</h2>
+
+<h3>Filter for: 
+  Lectures
+  Tutorial
+  Labs
+  <button id="filterButton">Filter</button>
+</h3>
 
 <ejs-schedule width='100%' height='850px' [selectedDate]="selectedDate">
   <e-views>
     <e-view option='WorkWeek' dateFormat='dd-MMM-yyyy'></e-view>
   </e-views>
-</ejs-schedule>`
+</ejs-schedule>

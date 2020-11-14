@@ -19,3 +19,12 @@ h1 {
     font-size: 250%;
     text-align: center;
 }
+
+p {
+    font-weight: 400;
+    font-size: medium;
+}
+
+.hidden {
+    display: none;
+}
