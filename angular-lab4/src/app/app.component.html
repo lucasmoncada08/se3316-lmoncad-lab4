@@ -2,7 +2,7 @@
 
 <h1>{{title}}</h1>
 
-<h3>Get All Avaliable Subject Codes and Descriptions <button (click)="getSubjCodesAndDescrs()">Toggle</button></h3>
+<h3>Get All Available Subject Codes and Descriptions <button (click)="getSubjCodesAndDescrs()">Toggle</button></h3>
     <ol id="subjCodeAndDescrList" class="hidden">
       <li *ngFor="let course of courses">
         {{course.catalog_nbr}} - {{course.className}}
@@ -10,21 +10,30 @@
     </ol>
     <br>
 
-    <h3>Get Course Codes for Given Subject Code <input #subjCodeForCourseCodes id="subjCodeForCourseCodes" value="Subject Code"/> <button id="getCourseCodesWithSubjCode">Search</button></h3>
+    <h3>Get Course Codes for Given Subject Code 
+        <input #subjCodeForCourseCodes value="Subject Code"/>
+        <button (click)="getCourseCodesWSubjCode(subjCodeForCourseCodes.value)">Search</button>
+    </h3>
     <ol id="courseCodesFromSubjList">
-      
+        <li *ngFor="let courseCode of courseCodesWSubjCodes | async">
+            {{ courseCode }}
+        </li>
     </ol>
     <br>
 
-    <!-- <h3>Get Timetable Entry for Given Subject Code and Course Code
-        <input type="text" id="subjCode1ForTimetable" value="Subject Code"/>
-        <input type="text" id="courseCode1ForTimetable" value="Course Code"/> 
-        <button id="getTimetableEntry">Search</button>
+    <h3>Get Timetable Entry for Given Subject Code and Course Code
+        <input #subjCode1ForTimetable value="Subject Code"/>
+        <input #courseCode1ForTimetable value="Course Code"/> 
+        <button (click)="getTimetableEntry(subjCode1ForTimetable.value, courseCode1ForTimetable.value)">Search</button>
     </h3>
-    <ul id="timetableEntryList"></ul>
+    <ul id="timetableEntryList">
+        <li *ngFor="let entry of timetableEntry | async">
+            {{ entry }}
+        </li>
+    </ul>
     <br>
 
-    <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
+    <!-- <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
         <input type="text" id="subjCode2ForTimetable" value="Subject Code"/>
         <input type="text" id="courseCode2ForTimetable" value="Course Code"/>
         <input type="text" id="courseCompForTimetable" value="Course Component"/>

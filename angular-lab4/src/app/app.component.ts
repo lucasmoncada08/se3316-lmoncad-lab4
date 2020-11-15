@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 import { COURSES } from './data';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,13 @@ export class AppComponent {
   public selectedDate: Date = new Date(2021, 8, 6);
   // public eventSettings: EventSettingsModel = { dataSource: scheduleData };
 
-  courses = COURSES;
+  courseCodesWSubjCodes: any;
+  timetableEntry: any;
 
-  constructor() { }
+  courses = COURSES;
+  readonly ROOT_URL = 'http://localhost:3000';
+
+  constructor(private http: HttpClient) { }
 
   public keyConfigs = {
     select: "space",
@@ -29,6 +34,13 @@ export class AppComponent {
     l.classList.toggle('hidden');
   }
 
+  getCourseCodesWSubjCode(subjCode) {
+    this.courseCodesWSubjCodes = this.http.get(this.ROOT_URL + `/api/coursecodes/${subjCode}`);
+  }
+
+  getTimetableEntry(subjCode, courseCode) {
+    this.timetableEntry = this.http.get(this.ROOT_URL + `/api/times/${subjCode}/${courseCode}`);
+  }
   
 
   value = '';
