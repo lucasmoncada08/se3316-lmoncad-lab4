@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
+import { WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 import { COURSES } from './data';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,10 +13,11 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'Western Timetable';
   public selectedDate: Date = new Date(2021, 8, 6);
-  // public eventSettings: EventSettingsModel = { dataSource: scheduleData };
 
   courseCodesWSubjCodes: any;
   timetableEntry: any;
+  timetableEntryWCourseComp: any;
+  scheduleNames: any;
 
   courses = COURSES;
   readonly ROOT_URL = 'http://localhost:3000';
@@ -42,6 +43,13 @@ export class AppComponent {
     this.timetableEntry = this.http.get(this.ROOT_URL + `/api/times/${subjCode}/${courseCode}`);
   }
   
+  getTimetableEntryWComponent(subjCode, courseCode, courseComp) {
+    this.timetableEntryWCourseComp = this.http.get(this.ROOT_URL + `/api/times/${subjCode}/${courseCode}/${courseComp}`);
+  }
+
+  createNewSchedule(newSchedInput) {
+    this.scheduleNames = this.http.get(this.ROOT_URL + `/api/timetable/new/${newSchedInput}`);
+  }
 
   value = '';
   onShowSchedule(value: string) { this.value = value; }

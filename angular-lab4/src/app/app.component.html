@@ -33,22 +33,31 @@
     </ul>
     <br>
 
-    <!-- <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
-        <input type="text" id="subjCode2ForTimetable" value="Subject Code"/>
-        <input type="text" id="courseCode2ForTimetable" value="Course Code"/>
-        <input type="text" id="courseCompForTimetable" value="Course Component"/>
-        <button id="getTimetableEntryWComponent">Search</button>
+    <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
+        <input #subjCode2ForTimetable value="Subject Code"/>
+        <input #courseCode2ForTimetable value="Course Code"/>
+        <input #courseCompForTimetable value="Course Component"/>
+        <button (click)="getTimetableEntryWComponent(subjCode2ForTimetable.value, courseCode2ForTimetable.value, courseCompForTimetable.value)">Search</button>
     </h3>
-    <ul id="timetableEntryWComponentList"></ul>
+    <ul id="timetableEntryWComponentList">
+        <li *ngFor="let entry of timetableEntryWCourseComp | async">
+            {{ entry }}
+        </li>
+    </ul>
     <br>
 
     <h3>Create a New Schedule
-        <input type="text" id="newSchedInput" value="Schedule Name"/> <button id="createNewSchedule">Submit</button>
+        <input #newSchedInput value="Schedule Name"/>
+        <button (click)="createNewSchedule(newSchedInput.value)">Submit</button>
     </h3>
-    <ul id="scheduleNames"></ul>
+    <ul id="scheduleNamesList">
+        <li *ngFor="let sched of scheduleNames | async">
+            {{ sched }}
+        </li>
+    </ul>
     <br>
 
-    <h3>Save a List of Courses in a Schedule</h3>
+    <!-- <h3>Save a List of Courses in a Schedule</h3>
     <h4>Schedule: 
         <input type="text" id="saveCoursesSchedName" value="Schedule Name"/>
     </h4>
