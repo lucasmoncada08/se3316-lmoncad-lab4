@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 import { COURSES } from './data';
 import { HttpClient } from '@angular/common/http';
-import * as angular from "angular";
+// import * as angular from "angular";
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,8 @@ export class AppComponent {
   timetableEntryWCourseComp: any;
   scheduleNames: any;
   schedule: any;
+  coursesInSched: any;
+  courseNumsInSched: any;
 
   courses = COURSES;
   readonly ROOT_URL = 'http://localhost:3000';
@@ -94,8 +96,27 @@ export class AppComponent {
     this.schedule = this.http.post(this.ROOT_URL + `/api/timetable/modify/${schedName}`, JSON.stringify(newCourses), data).subscribe(r=>{});
   
   }
+
+  listCoursesInSchedule(schedName) {
+    this.coursesInSched = this.http.get(this.ROOT_URL + `/api/timetable/view/${schedName}`);
+  }
+
+  listSchedulesAndCourses() {
+    this.courseNumsInSched = this.http.get(this.ROOT_URL + '/api/timetable/listall');
+  }
+
+  deleteSchedule(schedName) {
+    this.http.delete(this.ROOT_URL + `/api/timetable/delete/${schedName}`).subscribe(r=>{});
+  }
+
+  deleteAllScheds() {
+    this.http.delete(this.ROOT_URL + '/api/timetable/deleteall').subscribe(r=>{});
+  }
+
   value = '';
   onShowSchedule(value: string) { this.value = value; }
+
+
 
 }
 

@@ -25,6 +25,14 @@ p {
     font-size: medium;
 }
 
+.even {
+    padding-left: 0;
+}
+
+.odd {
+    padding-left: 20px;
+}
+
 .hidden {
     display: none;
 }

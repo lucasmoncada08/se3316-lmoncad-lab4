@@ -100,42 +100,49 @@
             type="checkbox"
             [checked]="course5Check"
             (change)="course5Check = !course5Check"/>
-    </h5> -->
+    </h5> 
     <button (click)="submitModifySchedule(saveCoursesSchedName.value, course1SubjCode.value, course1CourseCode.value, course2SubjCode.value, course2CourseCode.value, course3SubjCode.value, course3CourseCode.value, course4SubjCode.value, course4CourseCode.value, course5SubjCode.value, course5CourseCode.value)">
     Submit</button>
     <br>
 
-    <!-- <h3>Get the List of Subject Codes and Course Codes for a Given Schedule
-        <input type="text" id="listCoursesSchedName" value="Schedule Name"/>
-        <button id="listCoursesInSchedule">Search</button>
+    <h3>Get the List of Subject Codes and Course Codes for a Given Schedule
+        <input #listCoursesSchedName value="Schedule Name"/>
+        <button (click)="listCoursesInSchedule(listCoursesSchedName.value)">Search</button>
     </h3>
-    <ol id="coursesFromScheduleList"></ol>
+    <ul id="coursesFromScheduleList">
+        <li *ngFor="let course of coursesInSched | async">
+            {{ course }}
+        </li>
+    </ul>
     <br>
 
     <h3>Get a List of Schedules and the Number of Courses in Each 
-        <button id="listSchedulesAndCourses">Search</button>
+        <button (click)="listSchedulesAndCourses()">Search</button>
     </h3>
     <ol id="allSchedulesAndCourseNumsList"></ol>
-
+        <li *ngFor="let item of courseNumsInSched | async">
+            {{ item }}
+        </li>
     <br>
 
     <h3>Delete a Schedule
-        <input type="text" id="deleteSchedName" value="Schedule Name"/>
-        <button id="deleteScheduleButton">Submit</button>
+        <input #deleteSchedName value="Schedule Name"/>
+        <button (click)="deleteSchedule(deleteSchedName.value)">Submit</button>
     </h3>
     <br>
 
     <h3>Delete All Schedules
-        <button id="deleteAllButton">Submit</button>
+        <button (click)="deleteAllScheds()">Submit</button>
     </h3>
-    <br> -->
+    <br> 
 
 
 
 <br>
 <h2>Add Schedule to Timetable
-  <input #addSchedule (keyup.enter)="onShowSchedule(addSchedule.value)">
-  <p>{{addSchedule.value}}</p>
+  <input #addSchedule value="Schedule Name">
+  <button (click)="onShowSchedule(addSchedule.value)">Add</button>
+  <!-- <p>{{addSchedule.value}}</p> -->
 </h2>
 
 <h3>Filter for: 
@@ -145,7 +152,7 @@
   <button id="filterButton">Filter</button>
 </h3>
 
-<ejs-schedule width='100%' height='850px' [selectedDate]="selectedDate">
+<ejs-schedule #scheduleObj width='100%' height='850px' [selectedDate]="selectedDate">
   <e-views>
     <e-view option='WorkWeek' dateFormat='dd-MMM-yyyy'></e-view>
   </e-views>
