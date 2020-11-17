@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -13,6 +14,11 @@ var schedules = {
 };
 
 app.use('/', express.static("angular-lab4/src/app"));
+
+app.use(cors({
+    origin: ['http://localhost:4200'],
+    credentials: true
+}));
 
 app.get('/api/subjects&description', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -124,8 +130,9 @@ app.post('/api/timetable/modify/:schedName', jsonParser, (req, res) => {
                 break;
             }
         }
-        if (allMatches)
+        if (allMatches) {
             res.send(schedules);
+        }
         else
             res.status(404).send(["The subject code and course code combination is not valid"]);
     }
