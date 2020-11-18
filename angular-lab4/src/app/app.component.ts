@@ -22,6 +22,7 @@ export class AppComponent {
   scheduleNames: any;
   coursesInSched: any;
   courseNumsInSched: any;
+  eventsInSched: any = 0;
 
   static schedules: any;
 
@@ -96,7 +97,6 @@ export class AppComponent {
     }
 
     this.http.post(this.ROOT_URL + `/api/timetable/modify/${schedName}`, JSON.stringify(newCourses), data).subscribe(r => AppComponent.schedules = r);
-    console.log(AppComponent.schedules);
   }
 
   listCoursesInSchedule(schedName) {
@@ -116,6 +116,11 @@ export class AppComponent {
   }
 
   async onShowSchedule(schedName: string) { 
+
+    console.log(this.eventsInSched);
+    for (var i=1; i<=this.eventsInSched+1; i++) {
+      this.schedObj.deleteEvent(0);
+    }
     
     var schedIndex = AppComponent.schedules["scheduleNames"].findIndex(item => item == schedName);
     var subjCodes = AppComponent.schedules["subjects"][schedIndex];
@@ -173,9 +178,6 @@ export class AppComponent {
         dataLengths = dataLengths.concat(times.length - oldLen);
     })};
 
-    console.log(times);
-    console.log(dataLengths);
-
     var timesIndex = 0;
     var startHour;
     var startMin;
@@ -205,6 +207,8 @@ export class AppComponent {
       }
       timesIndex += dataLengths[i];
     }
+
+    this.eventsInSched = idCounter-1;
   }
 
   async showScheduleHelper(subjCodes, courseCodes, index) {
