@@ -35,6 +35,10 @@ export class AppComponent {
   course4Check = false;
   course5Check = false;
 
+  lecFilt = true;
+  tutFilt = true;
+  labFilt = true;
+
   constructor(private http: HttpClient) { }
 
   public keyConfigs = {
@@ -117,7 +121,6 @@ export class AppComponent {
 
   async onShowSchedule(schedName: string) { 
 
-    console.log(this.eventsInSched);
     for (var i=1; i<=this.eventsInSched+1; i++) {
       this.schedObj.deleteEvent(0);
     }
@@ -185,6 +188,7 @@ export class AppComponent {
     var endMin;
     var days = [];
     var idCounter = 0;
+    var comp;
     
     for (var i=0; i<dataLengths.length; i++) {
       startHour = timeToHourDict[`${times[timesIndex]}`];
@@ -196,14 +200,17 @@ export class AppComponent {
           days[j-timesIndex-2] = dayToNumDict[times[j]];
       }
       for (var j=0; j<days.length; j++) {
-        this.schedObj.addEvent([{
-          id: idCounter,
-          Subject: `${subjCodes[i]} - ${courseCodes[i]} (${times[timesIndex+dataLengths[i]-1]})`,
-          StartTime: new Date(2021, 8, days[j], startHour, startMin),
-          EndTime: new Date(2021, 8, days[j], endHour, endMin),
-          isAllDay: false
-        }])
-        idCounter++;
+        comp = times[timesIndex+dataLengths[i]-1]
+        if ((comp == "LEC" && this.lecFilt) || (comp == "TUT" && this.tutFilt) || (comp == "LAB" && this.labFilt)) {
+          this.schedObj.addEvent([{
+            id: idCounter,
+            Subject: `${subjCodes[i]} - ${courseCodes[i]} (${comp})`,
+            StartTime: new Date(2021, 8, days[j], startHour, startMin),
+            EndTime: new Date(2021, 8, days[j], endHour, endMin),
+            isAllDay: false
+          }])
+          idCounter++;
+        }
       }
       timesIndex += dataLengths[i];
     }

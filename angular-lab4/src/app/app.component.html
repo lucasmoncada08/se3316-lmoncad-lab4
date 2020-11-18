@@ -104,6 +104,7 @@
 <button (click)="submitModifySchedule(saveCoursesSchedName.value, course1SubjCode.value, course1CourseCode.value, course2SubjCode.value, course2CourseCode.value, course3SubjCode.value, course3CourseCode.value, course4SubjCode.value, course4CourseCode.value, course5SubjCode.value, course5CourseCode.value)">
 Submit</button>
 <br>
+<br>
 
 <h3>Get the List of Subject Codes and Course Codes for a Given Schedule
     <input #listCoursesSchedName value="Schedule Name"/>
@@ -139,15 +140,25 @@ Submit</button>
 <br>
 <h2>Add Schedule to Timetable
   <input #addSchedule value="Schedule Name">
-  <button (click)="onShowSchedule(addSchedule.value)">Add</button>
-  <!-- <p>{{addSchedule.value}}</p> -->
+  <button (click)="onShowSchedule(addSchedule.value)">Display</button>
 </h2>
 
 <h3>Filter for: 
   Lectures
+  <input
+  type="checkbox"
+    [checked]="lecFilt"
+    (change)="lecFilt = !lecFilt"/>
   Tutorial
+  <input
+    type="checkbox"
+    [checked]="tutFilt"
+    (change)="tutFilt = !tutFilt"/>
   Labs
-  <button id="filterButton">Filter</button>
+  <input
+    type="checkbox"
+    [checked]="labFilt"
+    (change)="labFilt = !labFilt"/>
 </h3>
 
 <ejs-schedule #scheduleObj width='100%' height='850px' [selectedDate]="selectedDate">

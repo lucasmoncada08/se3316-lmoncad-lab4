@@ -12,6 +12,11 @@
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+body {
+    color: rgb(79, 38, 131);
 }
 
 h1 {
