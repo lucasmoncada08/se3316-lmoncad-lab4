@@ -8,135 +8,133 @@
         {{course.catalog_nbr}} - {{course.className}}
       </li>
     </ol>
-    <br>
+<br>
 
-    <h3>Get Course Codes for Given Subject Code 
-        <input #subjCodeForCourseCodes value="Subject Code"/>
-        <button (click)="getCourseCodesWSubjCode(subjCodeForCourseCodes.value)">Search</button>
-    </h3>
-    <ol id="courseCodesFromSubjList">
-        <li *ngFor="let courseCode of courseCodesWSubjCodes | async">
-            {{ courseCode }}
-        </li>
-    </ol>
-    <br>
+<h3>Get Course Codes for Given Subject Code 
+    <input #subjCodeForCourseCodes value="Subject Code"/>
+    <button (click)="getCourseCodesWSubjCode(subjCodeForCourseCodes.value)">Search</button>
+</h3>
+<ol id="courseCodesFromSubjList">
+    <li *ngFor="let courseCode of courseCodesWSubjCodes | async">
+        {{ courseCode }}
+    </li>
+</ol>
+<br>
 
-    <h3>Get Timetable Entry for Given Subject Code and Course Code
-        <input #subjCode1ForTimetable value="Subject Code"/>
-        <input #courseCode1ForTimetable value="Course Code"/> 
-        <button (click)="getTimetableEntry(subjCode1ForTimetable.value, courseCode1ForTimetable.value)">Search</button>
-    </h3>
-    <ul id="timetableEntryList">
-        <li *ngFor="let entry of timetableEntry | async">
-            {{ entry }}
-        </li>
-    </ul>
-    <br>
+<h3>Get Timetable Entry for Given Subject Code and Course Code
+    <input #subjCode1ForTimetable value="Subject Code"/>
+    <input #courseCode1ForTimetable value="Course Code"/> 
+    <button (click)="getTimetableEntry(subjCode1ForTimetable.value, courseCode1ForTimetable.value)">Search</button>
+</h3>
+<ul id="timetableEntryList">
+    <li *ngFor="let entry of timetableEntry | async">
+        {{ entry }}
+    </li>
+</ul>
+<br>
 
-    <h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
-        <input #subjCode2ForTimetable value="Subject Code"/>
-        <input #courseCode2ForTimetable value="Course Code"/>
-        <input #courseCompForTimetable value="Course Component"/>
-        <button (click)="getTimetableEntryWComponent(subjCode2ForTimetable.value, courseCode2ForTimetable.value, courseCompForTimetable.value)">Search</button>
-    </h3>
-    <ul id="timetableEntryWComponentList">
-        <li *ngFor="let entry of timetableEntryWCourseComp | async">
-            {{ entry }}
-        </li>
-    </ul>
-    <br>
+<h3>Get Timetable Entry for Given Subject Code, Course Code, and Course Component 
+    <input #subjCode2ForTimetable value="Subject Code"/>
+    <input #courseCode2ForTimetable value="Course Code"/>
+    <input #courseCompForTimetable value="Course Component"/>
+    <button (click)="getTimetableEntryWComponent(subjCode2ForTimetable.value, courseCode2ForTimetable.value, courseCompForTimetable.value)">Search</button>
+</h3>
+<ul id="timetableEntryWComponentList">
+    <li *ngFor="let entry of timetableEntryWCourseComp | async">
+        {{ entry }}
+    </li>
+</ul>
+<br>
 
-    <h3>Create a New Schedule
-        <input #newSchedInput value="Schedule Name"/>
-        <button (click)="createNewSchedule(newSchedInput.value)">Submit</button>
-    </h3>
-    <ul id="scheduleNamesList">
-        <li *ngFor="let sched of scheduleNames | async">
-            {{ sched }}
-        </li>
-    </ul>
-    <br>
+<h3>Create a New Schedule
+    <input #newSchedInput value="Schedule Name"/>
+    <button (click)="createNewSchedule(newSchedInput.value)">Submit</button>
+</h3>
+<ul id="scheduleNamesList">
+    <li *ngFor="let sched of scheduleNames | async">
+        {{ sched }}
+    </li>
+</ul>
+<br>
 
-    <h3>Save a List of Courses in a Schedule</h3>
-    <h4>Schedule: 
-        <input #saveCoursesSchedName value="Schedule Name"/>
-    </h4>
-    <h5>Course 1: 
-        <input #course1SubjCode value="Subject Code"/>
-        <input #course1CourseCode value="Course Code"/>
-        <input
-            type="checkbox"
-            [checked]="course1Check"
-            (change)="course1Check = !course1Check"/>
-    </h5>
-    <h5>Course 2: 
-        <input #course2SubjCode value="Subject Code"/>
-        <input #course2CourseCode value="Course Code"/>
-        <input
-            type="checkbox"
-            [checked]="course2Check"
-            (change)="course2Check = !course2Check"/>
-    </h5>
-    <h5>Course 3: 
-        <input #course3SubjCode value="Subject Code"/>
-        <input #course3CourseCode value="Course Code"/>
-        <input
-            type="checkbox"
-            [checked]="course3Check"
-            (change)="course3Check = !course3Check"/>
-    </h5>
-    <h5>Course 4: 
-        <input #course4SubjCode value="Subject Code"/>
-        <input #course4CourseCode value="Course Code"/>
-        <input
-            type="checkbox"
-            [checked]="course4Check"
-            (change)="course4Check = !course4Check"/>
-    </h5>
-    <h5>Course 5: 
-        <input #course5SubjCode value="Subject Code"/>
-        <input #course5CourseCode value="Course Code"/>
-        <input
-            type="checkbox"
-            [checked]="course5Check"
-            (change)="course5Check = !course5Check"/>
-    </h5> 
-    <button (click)="submitModifySchedule(saveCoursesSchedName.value, course1SubjCode.value, course1CourseCode.value, course2SubjCode.value, course2CourseCode.value, course3SubjCode.value, course3CourseCode.value, course4SubjCode.value, course4CourseCode.value, course5SubjCode.value, course5CourseCode.value)">
-    Submit</button>
-    <br>
+<h3>Save a List of Courses in a Schedule</h3>
+<h4>Schedule: 
+    <input #saveCoursesSchedName value="Schedule Name"/>
+</h4>
+<h5>Course 1: 
+    <input #course1SubjCode value="Subject Code"/>
+    <input #course1CourseCode value="Course Code"/>
+    <input
+        type="checkbox"
+        [checked]="course1Check"
+        (change)="course1Check = !course1Check"/>
+</h5>
+<h5>Course 2: 
+    <input #course2SubjCode value="Subject Code"/>
+    <input #course2CourseCode value="Course Code"/>
+    <input
+        type="checkbox"
+        [checked]="course2Check"
+        (change)="course2Check = !course2Check"/>
+</h5>
+<h5>Course 3: 
+    <input #course3SubjCode value="Subject Code"/>
+    <input #course3CourseCode value="Course Code"/>
+    <input
+        type="checkbox"
+        [checked]="course3Check"
+        (change)="course3Check = !course3Check"/>
+</h5>
+<h5>Course 4: 
+    <input #course4SubjCode value="Subject Code"/>
+    <input #course4CourseCode value="Course Code"/>
+    <input
+        type="checkbox"
+        [checked]="course4Check"
+        (change)="course4Check = !course4Check"/>
+</h5>
+<h5>Course 5: 
+    <input #course5SubjCode value="Subject Code"/>
+    <input #course5CourseCode value="Course Code"/>
+    <input
+        type="checkbox"
+        [checked]="course5Check"
+        (change)="course5Check = !course5Check"/>
+</h5> 
+<button (click)="submitModifySchedule(saveCoursesSchedName.value, course1SubjCode.value, course1CourseCode.value, course2SubjCode.value, course2CourseCode.value, course3SubjCode.value, course3CourseCode.value, course4SubjCode.value, course4CourseCode.value, course5SubjCode.value, course5CourseCode.value)">
+Submit</button>
+<br>
 
-    <h3>Get the List of Subject Codes and Course Codes for a Given Schedule
-        <input #listCoursesSchedName value="Schedule Name"/>
-        <button (click)="listCoursesInSchedule(listCoursesSchedName.value)">Search</button>
-    </h3>
-    <ul id="coursesFromScheduleList">
-        <li *ngFor="let course of coursesInSched | async">
-            {{ course }}
-        </li>
-    </ul>
-    <br>
+<h3>Get the List of Subject Codes and Course Codes for a Given Schedule
+    <input #listCoursesSchedName value="Schedule Name"/>
+    <button (click)="listCoursesInSchedule(listCoursesSchedName.value)">Search</button>
+</h3>
+<ul id="coursesFromScheduleList">
+    <li *ngFor="let course of coursesInSched | async">
+        {{ course }}
+    </li>
+</ul>
+<br>
 
-    <h3>Get a List of Schedules and the Number of Courses in Each 
-        <button (click)="listSchedulesAndCourses()">Search</button>
-    </h3>
-    <ol id="allSchedulesAndCourseNumsList"></ol>
-        <li *ngFor="let item of courseNumsInSched | async">
-            {{ item }}
-        </li>
-    <br>
+<h3>Get a List of Schedules and the Number of Courses in Each 
+    <button (click)="listSchedulesAndCourses()">Search</button>
+</h3>
+<ol id="allSchedulesAndCourseNumsList"></ol>
+    <li *ngFor="let item of courseNumsInSched | async">
+        {{ item }}
+    </li>
+<br>
 
-    <h3>Delete a Schedule
-        <input #deleteSchedName value="Schedule Name"/>
-        <button (click)="deleteSchedule(deleteSchedName.value)">Submit</button>
-    </h3>
-    <br>
+<h3>Delete a Schedule
+    <input #deleteSchedName value="Schedule Name"/>
+    <button (click)="deleteSchedule(deleteSchedName.value)">Submit</button>
+</h3>
+<br>
 
-    <h3>Delete All Schedules
-        <button (click)="deleteAllScheds()">Submit</button>
-    </h3>
-    <br> 
-
-
+<h3>Delete All Schedules
+    <button (click)="deleteAllScheds()">Submit</button>
+</h3>
+<br> 
 
 <br>
 <h2>Add Schedule to Timetable

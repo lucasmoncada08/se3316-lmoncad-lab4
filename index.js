@@ -141,7 +141,7 @@ app.post('/api/timetable/modify/:schedName', jsonParser, (req, res) => {
 });
 
 app.get('/api/times/:subjCode/:courseCode', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200'); 
     console.log(`Get request for ${req.url}`);
     var times = [];
     for (var i=0; i<json.length; i++) {
